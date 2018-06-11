@@ -40,7 +40,8 @@ class MarkovChain
         results.gsub!(" #{punc}", "#{punc}")
       end
 
-      results
+      # capitalize the first letter of each sentence (against . ! ?)
+      results.gsub(/[a-z][^.?!]*/) { |match| match[0].upcase + match[1..-1].rstrip }
     end
 
     private
