@@ -7,14 +7,25 @@ RSpec.describe MarkovChain::FrequencyTable, type: :model do
 
   describe '#to_h' do
     subject { frequency_table.to_h }
-    let(:text) { 'hello world' }
+    let(:text) { 'word all word possible word following word choices' }
 
     it 'returns a hash' do
       expect(subject).to be_a(Hash)
     end
 
     it 'returns a list of each word in the text with counts of each word that somes after them' do
-      expect(subject).to eq({"hello"=>{"world"=>1}, "world"=>{"hello"=>1}})
+      expect(subject).to eq(
+        'word' => {
+          'all' => 1,
+          'possible' => 1,
+          'following' => 1,
+          'choices' => 1
+        },
+        'all' => { 'word' => 1 },
+        'possible' => { 'word' => 1 },
+        'following' => { 'word' => 1 },
+        'choices' => { 'word' => 1 }
+      )
     end
 
     context 'end of chain' do
@@ -24,7 +35,7 @@ RSpec.describe MarkovChain::FrequencyTable, type: :model do
       it 'points the last token of the chain back to the first' do
         expect(subject['a'].keys).to eq(['b'])
         expect(subject['b'].keys).to eq(['c'])
-        
+
         expect(subject['y'].keys).to eq(['z'])
         expect(subject['z'].keys).to eq(['a'])
       end
@@ -53,7 +64,7 @@ RSpec.describe MarkovChain::FrequencyTable, type: :model do
 
     context 'punctuation formatting' do
       let(:text) { 'no spaces in these commas, questions? and exclamations!' }
-      
+
       it 'removes leading spaces from punctuation' do
         expect(subject.match(' \,')).to be_nil
         expect(subject.match('\,')).not_to be_nil

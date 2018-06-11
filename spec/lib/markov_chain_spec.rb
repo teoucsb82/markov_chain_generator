@@ -25,7 +25,7 @@ RSpec.describe MarkovChain, type: :model do
       generate
     end
 
-    context 'with options' do
+    # context 'with options' do
       # context 'max_words_length' do
       #   describe 'default' do
 
@@ -39,6 +39,6 @@ RSpec.describe MarkovChain, type: :model do
       #     it { expect(generate.split(' ').length).to eq 1 } 
       #   end
       # end
-    end
+    # end
   end
 end
