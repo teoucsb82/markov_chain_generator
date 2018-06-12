@@ -1,4 +1,4 @@
-class MarkovChain
+class ChainGenerator
   attr_reader :frequency_table
 
   def initialize(text, options = {})

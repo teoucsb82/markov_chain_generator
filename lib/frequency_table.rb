@@ -1,4 +1,4 @@
-class MarkovChain
+class ChainGenerator
   # Not meant to be called directly, used for isolation & testing.
   # Please use the main MarkovChain class to invoke these
 

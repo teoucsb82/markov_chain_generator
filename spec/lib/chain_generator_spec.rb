@@ -1,24 +1,24 @@
 require 'rails_helper'
-require 'markov_chain'
+require 'chain_generator'
 require 'frequency_table'
 
-RSpec.describe MarkovChain, type: :model do
-  subject(:markov_chain) { MarkovChain.new(text, options) }
+RSpec.describe ChainGenerator, type: :model do
+  subject(:chain_generator) { ChainGenerator.new(text, options) }
   let(:text) { 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' }
   let(:options) { Hash.new }
 
   describe 'initialize' do
-    it { expect(markov_chain).to be_a(MarkovChain) }
+    it { expect(chain_generator).to be_a(ChainGenerator) }
   end
 
   describe '#frequency_table' do
-    subject(:frequency_table) { markov_chain.frequency_table }
-    it { expect(frequency_table).to be_a(MarkovChain::FrequencyTable) }
+    subject(:frequency_table) { chain_generator.frequency_table }
+    it { expect(frequency_table).to be_a(ChainGenerator::FrequencyTable) }
   end
 
   describe '#generate' do
-    subject(:generate) { markov_chain.generate }
-    let(:frequency_table) { markov_chain.frequency_table }
+    subject(:generate) { chain_generator.generate }
+    let(:frequency_table) { chain_generator.frequency_table }
     
     it 'calls FrequencyTable#to_s' do
       expect(frequency_table).to receive(:to_s)
