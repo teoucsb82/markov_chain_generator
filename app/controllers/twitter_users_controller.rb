@@ -14,6 +14,9 @@ class TwitterUsersController < ApplicationController
   end
 
   def show
+    @twitter_user = TwitterUser.find(params[:id])
+    @tweets = @twitter_user.tweets
+    respond_with(@twitter_user)
   end
 
   private
