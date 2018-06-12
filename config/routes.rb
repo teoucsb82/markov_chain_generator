@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'markov_chains#index'
-  resources :markov_chains, only: [:index, :new, :create, :show]
+  root 'twitter_users#index'
+  resources :twitter_users, only: [:index, :create, :new, :show, :update]
+  resources :markov_chains, only: [:create, :update]
 end
