@@ -29,6 +29,8 @@ class ChainGenerator
       results = [starting_word]
 
       max_length = 140 #keep generated tweet under 140 char.
+      
+      # given a starting word, build the chain
       while results.join(' ').length <= max_length
         next_word = select_next_word_from(results)
         results << next_word
