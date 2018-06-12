@@ -76,5 +76,15 @@ RSpec.describe ChainGenerator::FrequencyTable, type: :model do
         expect(subject.match('\!')).not_to be_nil
       end
     end
+
+    context 'max length of result' do
+      let(:long_string) { 'this is a long string. and this is another long string and this is too.' }
+      let(:text) { Array.new(20) { long_string }.join(' ') }
+
+      it 'returns a max string of 140 characters' do
+        expect(text.length > 140).to eq true
+        expect(subject.length <= 140).to eq true
+      end
+    end
   end
 end

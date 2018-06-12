@@ -6,6 +6,8 @@ p.lead Enter a Twitter Username to generate tweets from
   = f.text_field :name
   = f.submit
 
-p Most recent twitter users.
-- @users.each do |user|
-  p = link_to user.name, user_path(user)
+- if @users.present?
+  hr
+  p Or view some recent twitter users.
+  - @users.each do |user|
+    p = link_to user.name, user_path(user)

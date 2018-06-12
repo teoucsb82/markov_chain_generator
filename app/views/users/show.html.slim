@@ -1,4 +1,8 @@
 h1 = @user.name
 .panel.panel-success
+  .panel-heading
+    h3.panel-title Generated Tweet
   .panel-body
-    = @markov_chain
+    = @markov_chain.generate
+  .panel-footer
+    small Source tweets: #{@markov_chain.text}

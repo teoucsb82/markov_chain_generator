@@ -9,36 +9,38 @@ class ChainGenerator
     end
 
     def to_h
-      table = {}
+      return @table if @table
+      @table = {}
       text_array.each_with_index do |token, i|
-        table[token] ||= {}
+        @table[token] ||= {}
         if i + 1 == text_array.length 
           # end of list, map last token back to the first
           next_token = text_array[0]
         else
           next_token = text_array[i+1]
         end
-        table[token][next_token] ||= 0
-        table[token][next_token] += 1  
+        @table[token][next_token] ||= 0
+        @table[token][next_token] += 1  
       end
-      table
+      @table
     end
 
     def to_s
-      starting_word = self.to_h.select { |k, v| v.present? }.keys.sample
       results = [starting_word]
 
-      while results.length < @options[:max_length]
+      max_length = 140 #keep generated tweet under 140 char.
+      while results.join(' ').length <= max_length
         next_word = select_next_word_from(results)
-        # break unless next_word
         results << next_word
       end
-      results = results.join(' ')
-
-      # restore punctuation spacing
-      punctuation.each do |punc|
-        results.gsub!(" #{punc}", "#{punc}")
+      
+      # loop above might go above the max_length char limit.
+      if results.join(' ').length > max_length
+        results = results[0..-1] 
       end
+
+      results = results.join(' ')
+      trim_leading_punctuation_from!(results)
 
       # capitalize the first letter of each sentence (against . ! ?)
       results.gsub(/[a-z][^.?!]*/) { |match| match[0].upcase + match[1..-1].rstrip }
@@ -71,6 +73,11 @@ class ChainGenerator
       weighted_hash.max_by { |_, weight| rand ** (1.0 / weight) }.first
     end
 
+    def starting_word
+      # pick a random word that is not punctuation
+      to_h.keys.reject{ |token| token.in?(punctuation) }.sample
+    end
+
     def text_array
       text_array = @text.split(' ').map(&:downcase)
       text_array.map! do |token|
@@ -82,6 +89,14 @@ class ChainGenerator
         end
       end
       text_array.flatten
+    end
+
+    def trim_leading_punctuation_from!(results)
+      punctuation.each do |punc|
+        # trim leading space near punctuation
+        # ex: "this , is . some text !" becomes "this, is. some text!"
+        results.gsub!(" #{punc}", "#{punc}")
+      end
     end
   end
 end
