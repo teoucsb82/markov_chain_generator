@@ -74,6 +74,8 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
     http (3.0.0)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -110,6 +112,8 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     pg (1.0.0)
+    postgresql (1.0.0)
+      pg
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -239,9 +243,11 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   dotenv-rails
   friendly_id (~> 5.1.0)
+  heroku-deflater
   jbuilder (~> 2.0)
   jquery-rails
   pg
+  postgresql
   pry-byebug
   rails (= 4.2.8)
   rails_12factor
