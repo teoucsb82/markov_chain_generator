@@ -111,9 +111,7 @@ GEM
     naught (1.1.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    pg (1.0.0)
-    postgresql (1.0.0)
-      pg
+    pg (0.21.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -246,8 +244,7 @@ DEPENDENCIES
   heroku-deflater
   jbuilder (~> 2.0)
   jquery-rails
-  pg
-  postgresql
+  pg (= 0.21.0)
   pry-byebug
   rails (= 4.2.8)
   rails_12factor
