@@ -6,7 +6,8 @@
 - Can either download this repo and run it locally (`rake db:migrate` first, then `rails s` to launch) or it is also currently hosted on [Heroku](https://brandless-markov.herokuapp.com)
 - Enter in a twitter username to generate a 140 char tweet using the Markov Chain algorithm.
   - Generated tweets are visable at `/users/<username>` (#show path).
-  - The texts themselves are persisted, and reloading the page will generate new chains on the fly.
+  - The app will grab the most recent 20 tweets from that username, then when the page loads will randomly grab 3 of those texts and generate up to 140 characters from those tweets.
+    - The texts themselves are persisted, and reloading the page will generate new chains on the fly.
   - The markov chain outputs are NOT persisted based on the way I set this up. If we wanted, could easily save each one as a `belongs_to` pattern on the top-level `user` and have them saved to a DB.
 
 ## Tech highlights
