@@ -13,30 +13,22 @@
 
 ActiveRecord::Schema.define(version: 20180612045154) do
 
-  create_table "markov_chains", force: :cascade do |t|
-    t.integer  "twitter_user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "markov_chains", ["twitter_user_id"], name: "index_markov_chains_on_twitter_user_id"
-
   create_table "tweets", force: :cascade do |t|
     t.string   "body"
-    t.integer  "twitter_user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "tweets", ["twitter_user_id"], name: "index_tweets_on_twitter_user_id"
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
-  create_table "twitter_users", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "slug"
   end
 
-  add_index "twitter_users", ["name"], name: "index_twitter_users_on_name"
+  add_index "users", ["name"], name: "index_users_on_name"
 
 end

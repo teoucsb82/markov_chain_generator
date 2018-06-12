@@ -1,8 +1,10 @@
+require_relative './frequency_table'
+
 class ChainGenerator
   attr_reader :frequency_table
 
   def initialize(text, options = {})
-    @frequency_table = FrequencyTable.new(text, options)
+    @frequency_table = ChainGenerator::FrequencyTable.new(text, options)
   end
 
   def generate

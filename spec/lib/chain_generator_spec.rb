@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'chain_generator'
-require 'frequency_table'
 
 RSpec.describe ChainGenerator, type: :model do
   subject(:chain_generator) { ChainGenerator.new(text, options) }

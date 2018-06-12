@@ -1,0 +1,11 @@
+h1.text-center TwitterBot
+hr
+
+p.lead Enter a Twitter Username to generate tweets from
+= form_for(User.new) do |f|
+  = f.text_field :name
+  = f.submit
+
+p Most recent twitter users.
+- @users.each do |user|
+  p = link_to user.name, user_path(user)
