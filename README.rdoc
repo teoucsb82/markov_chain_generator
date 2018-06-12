@@ -25,8 +25,9 @@
   - Could simply build a model that had a an attribute to hold a string, and then call `ChainGenerator.new(string).generate` to get a chain from that text.
 - The chain generator output is not 100% perfect. I would love to extend this to take in options (ex: `max_word_length`, or `enforce_random_start_word` etc) to allow more flexibility. I have placeholders in the code for "@options" that are currently not connected to any logic.
   - It also does not parse certain punctuation properly. Key breakpoints for end-of-word (ex: `.`, `!`, `?`) are covered, but others (ex: `(` or `)`) are not accounted for and will lead to interesting output.
+- Commits are not in the best shape. Ideally would have rebased and cleaned them up.
 
 ## Notes/Thought Process
 - Would have liked to test all the things (controllers, models), but in the interest of time only covered the tests for algorithms. 
 - No security whatsover. In theory, someone could hammer this endpoint and cause me to get blocked by twitter for rate limiting.
-- Tried to get up an MVP as quickly as possible.
+- Tried to get up an MVP as quickly as possible, and hoping I didn't miss any specific requirements / captured the spirit of the assignment.
