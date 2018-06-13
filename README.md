@@ -2,7 +2,7 @@
 
 [Live on Heroku](https://brandless-markov.herokuapp.com)
 
-## Useage
+## Usage
 - Can either download this repo and run it locally (`rake db:migrate` first, then `rails s` to launch) or it is also currently hosted on [Heroku](https://brandless-markov.herokuapp.com)
 - Enter in a twitter username to generate a 140 char tweet using the Markov Chain algorithm.
   - Generated tweets are visable at `/users/<username>` (#show path).
